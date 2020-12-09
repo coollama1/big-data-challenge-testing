@@ -158,12 +158,12 @@ def reducer2(previousVal, nextVal):
     return combineCounts(previousVal,nextVal)
 
 if __name__=='__main__':
-    rdd = sc.textFile('2015-mock.csv')
-    rdd2 = sc.textFile('2016-mock.csv')
-    rdd3 = sc.textFile('2017-mock.csv')
-    rdd4 = sc.textFile('2018-mock.csv')
-    rdd5 = sc.textFile('2019-mock.csv')
-    rdd6 = sc.textFile('Centerline-mock.csv')
+    rdd = sc.textFile('/data/share/bdm/nyc_parking_violation/2015.csv')
+    rdd2 = sc.textFile('/data/share/bdm/nyc_parking_violation/2016.csv')
+    rdd3 = sc.textFile('/data/share/bdm/nyc_parking_violation/2017.csv')
+    rdd4 = sc.textFile('/data/share/bdm/nyc_parking_violation/2018.csv')
+    rdd5 = sc.textFile('/data/share/bdm/nyc_parking_violation/2019.csv')
+    rdd6 = sc.textFile('/data/share/bdm/nyc_cscl.csv')
 
     output_file = "output_folder"
     if len(sys.argv) >1:
