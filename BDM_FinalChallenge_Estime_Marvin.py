@@ -158,16 +158,17 @@ def reducer2(previousVal, nextVal):
     return combineCounts(previousVal,nextVal)
 
 if __name__=='__main__':
-    rdd = sc.textFile('2015-mock.csv')
-    rdd2 = sc.textFile('2016-mock.csv')
-    rdd3 = sc.textFile('2017-mock.csv')
-    rdd4 = sc.textFile('2018-mock.csv')
-    rdd5 = sc.textFile('2019-mock.csv')
-    rdd6 = sc.textFile('Centerline-mock.csv')
+    rdd = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/2015-mock.csv')
+    rdd2 = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/2016-mock.csv')
+    rdd3 = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/2017-mock.csv')
+    rdd4 = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/2018-mock.csv')
+    rdd5 = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/2019-mock.csv')
+    rdd6 = sc.textFile('/home/cusp/mestime000/big-data-challenge-testing/Centerline-mock.csv')
 
     output_file = "output_folder"
     if len(sys.argv) >1:
         output_file = sys.argv[1]
+
     rdd = rdd.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
     rdd2 = rdd2.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
     rdd3 = rdd3.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
