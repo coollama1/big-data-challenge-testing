@@ -106,14 +106,14 @@ def mapper5(partId,records):
                         try:
                             l_low_1, l_low_2 = l_low_hn
                             l_high_1, l_high_2 = l_high_hn
-                        except error:
+                        except:
                             pass
                     
                     if type(r_low_hn) is tuple and len(r_low_hn) == 2:
                         try:
                             r_low_1, r_low_2 = r_low_hn
                             r_high_1, r_high_2 = r_high_hn
-                        except error:
+                        except:
                             pass
                     
                     if type(house_num) is tuple and len(house_num) == 2:
@@ -121,7 +121,7 @@ def mapper5(partId,records):
                             house_1, house_2 = house_num
                             house_1_int = int(house_1)
                             house_2_int = int(house_2)
-                        except error:
+                        except:
                             pass
                     try:    
                         l_low_1_int = int(l_low_1)
@@ -132,7 +132,7 @@ def mapper5(partId,records):
                         r_low_2_int = int(r_low_2)
                         r_high_1_int = int(r_high_1)
                         r_high_2_int = int(r_high_2)
-                    except error:
+                    except:
                         l_low_1_int = 0
                         l_low_2_int = 0
                         l_high_1_int = 0
