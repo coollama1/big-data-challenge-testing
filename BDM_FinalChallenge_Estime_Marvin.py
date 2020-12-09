@@ -165,6 +165,9 @@ if __name__=='__main__':
     rdd5 = sc.textFile('2019-mock.csv')
     rdd6 = sc.textFile('Centerline-mock.csv')
 
+    output_file = "output_folder"
+    if len(sys.argv) >1:
+        output_file = sys.argv[1]
     rdd = rdd.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
     rdd2 = rdd2.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
     rdd3 = rdd3.mapPartitionsWithIndex(mapper1).reduceByKey(reducer1)
@@ -180,4 +183,4 @@ if __name__=='__main__':
 
     output = violations.join(center_line).union(center_line.subtractByKey(violations))
     output = output.mapPartitionsWithIndex(mapper5).reduceByKey(reducer2)\
-                .mapPartitionsWithIndex(mapper6).sortBy(lambda x: x[0]).collect()
+                .mapPartitionsWithIndex(mapper6).sortBy(lambda x: x[0]).saveAsTextFile(output_file)
