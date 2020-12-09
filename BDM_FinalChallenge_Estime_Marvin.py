@@ -102,15 +102,15 @@ def mapper5(partId,records):
                     house_1_int = 0
                     house_2_int = 0
                     
-                    if not isinstance(l_low_hn,str):
+                    if type(l_low_hn) is tuple:
                         l_low_1, l_low_2 = l_low_hn
                         l_high_1, l_high_2 = l_high_hn
                     
-                    if not isinstance(l_low_hn,str):
+                    if type(r_low_hn) is tuple:
                         r_low_1, r_low_2 = r_low_hn
                         r_high_1, r_high_2 = r_high_hn
                     
-                    if not isinstance(house_num,str):
+                    if type(house_num) is tuple:
                         house_1, house_2 = house_num
                         house_1_int = int(house_1)
                         house_2_int = int(house_2)
