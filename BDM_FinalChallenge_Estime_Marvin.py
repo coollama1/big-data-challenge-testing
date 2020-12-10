@@ -40,7 +40,7 @@ def mapper3(partId,records):
         next(records)
     for row in reader:
         if len(row) > 28:
-            l_low_hn = row[1]
+            l_low_hn = row[2]
             l_high_hn = row[3]
             r_low_hn = row[4]
             r_high_hn = row[5]
@@ -56,7 +56,7 @@ def mapper3(partId,records):
             if '-' in r_low_hn:
                 r_low_hn = tuple(r_low_hn.split('-'))
                 r_high_hn = tuple(r_high_hn.split('-'))
-            yield(row[2], full_stree, st_label, row[13], l_low_hn,  l_high_hn, r_low_hn, r_high_hn)
+            yield(row[0], full_stree, st_label, row[13], l_low_hn,  l_high_hn, r_low_hn, r_high_hn)
             #(physicalid, full_stree, st_label, borocode, l_low_hn, l_high_hn, r_low_hn, r_high,hn)
 
 def mapper4(partId,records):
