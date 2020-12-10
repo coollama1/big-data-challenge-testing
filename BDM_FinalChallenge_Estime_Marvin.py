@@ -76,8 +76,7 @@ def mapper5(partId,records):
         if len(val) == 5:
             physicalid,l_low_hn,l_high_hn,r_low_hn,r_high_hn = val
             counts_per_year = [0,0,0,0,0]
-            #yield (physicalid, counts_per_year)
-            yield (physicalid, val)
+            yield (physicalid, counts_per_year)
         elif len(val) == 2:
             violation,street = val
             house_num, year, count = violation
@@ -165,8 +164,7 @@ def mapper5(partId,records):
             if year <= "2019" and year >= "2015" and valid_hn:
                 index = year_to_index[year]
                 counts_per_year[index] = count
-            #yield (physicalid,counts_per_year)
-            yield(physicalid,(val,valid_hn))
+            yield (physicalid,counts_per_year)
 
 def mapper6(partId,records):
     for row in records:
@@ -212,6 +210,5 @@ if __name__=='__main__':
                     .mapPartitionsWithIndex(mapper2)
 
     output = violations.join(center_line).union(center_line.subtractByKey(violations))
-    output.mapPartitionsWithIndex(mapper5).saveAsTextFile(output_file)
-    # output.mapPartitionsWithIndex(mapper5).reduceByKey(reducer2)\
-    #       .mapPartitionsWithIndex(mapper6).sortBy(lambda x: x[0]).saveAsTextFile(output_file)
+    output.mapPartitionsWithIndex(mapper5).reduceByKey(reducer2)\
+          .mapPartitionsWithIndex(mapper6).sortBy(lambda x: x[0]).saveAsTextFile(output_file)
