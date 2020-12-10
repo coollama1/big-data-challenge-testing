@@ -82,18 +82,25 @@ def mapper5(partId,records):
             violation,street = val
             house_num, year, count = violation
             physicalid,l_low_hn,l_high_hn,r_low_hn,r_high_hn = street
-            valid_hn = True
-            if l_low_hn and r_low_hn:
+            valid_hn = False
+            if l_low_hn or r_low_hn:
                 if isinstance(l_low_hn, str) and isinstance(r_low_hn,str) and isinstance(house_num,str):
-                    house_num_int = int(house_num)
-                    l_low_int = int(l_low_hn)
-                    l_high_int = int(l_high_hn)
-                    r_low_int = int(r_low_hn)
-                    r_high_int = int(r_high_hn)
-                    if (house_num_int % 2) == 0:
-                        valid_hn = (house_num_int <= r_high_int) and (house_num_int >= r_low_int)
-                    else:
-                        valid_hn = (house_num_int <= l_high_int) and (house_num_int >= l_low_int)
+                    try:
+                        house_num_int = int(house_num)
+                        l_low_int = int(l_low_hn)
+                        l_high_int = int(l_high_hn)
+                        r_low_int = int(r_low_hn)
+                        r_high_int = int(r_high_hn)
+                        if (house_num_int % 2) == 0:
+                            valid_hn = (house_num_int <= r_high_int) and (house_num_int >= r_low_int)
+                        else:
+                            valid_hn = (house_num_int <= l_high_int) and (house_num_int >= l_low_int)
+                    except:
+                        try:
+                            valid_hn = ((house_num <= r_high_hn) and (house_num >= r_low_hn)) or \
+                                        ((house_num <= l_high_hn) and (house_num >= l_low_hn))
+                        except:
+                            pass
                 else:
                     l_low_1, l_low_2 = ("0","0")
                     l_high_1, l_high_2 = ("0","0")
@@ -151,6 +158,7 @@ def mapper5(partId,records):
                         else:
                             valid_hn = (house_1_int >= l_low_1_int) and (house_2_int >= l_low_2_int) and \
                                         (house_1_int <= l_high_1_int) and (house_2_int <= l_high_2_int) 
+
             year_to_index = {"2015":0,"2016":1,"2017":2,"2018":3,"2019":4}
             index = -1
             counts_per_year = [0,0,0,0,0]
